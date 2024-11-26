@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
 const TaskList = () => {
@@ -8,23 +8,23 @@ const TaskList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const q = query(collection(db, "tasks"));
-        const querySnapshot = await getDocs(q);
+    const q = query(collection(db, "tasks"));
+    const unsubscribe = onSnapshot(
+      q,
+      (querySnapshot) => {
         const tasksArray = [];
         querySnapshot.forEach((doc) => {
           tasksArray.push({ id: doc.id, ...doc.data() });
         });
         setTasks(tasksArray);
-      } catch (err) {
+        setLoading(false);
+      },
+      (err) => {
         setError(err.message);
-      } finally {
         setLoading(false);
       }
-    };
-
-    fetchTasks();
+    );
+    return () => unsubscribe();
   }, []);
 
   if (loading) {

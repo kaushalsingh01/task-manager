@@ -3,7 +3,7 @@
 This is a Task Manager application built using React, Firebase, and Bootstrap. The app allows users to manage their tasks by creating, updating, and deleting them. It uses Firebase for authentication and Firestore as the database to store tasks.
 
 ## Features:
-- User authentication using Firebase Authentication.
+- User authentication using Firebase Authentication (Test Login: admin@email.com password: admin1234).
 - Add, update, and delete tasks.
 - Real-time task updates synced with Firestore.
 - Search functionality to filter tasks by title and description.

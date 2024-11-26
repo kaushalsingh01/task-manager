@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
@@ -63,7 +64,20 @@ const TaskList = () => {
             ))
           : !loading && <p>No tasks found.</p>}
       </ul>
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
-
+import CreateTask from "./CreateTask";
+import TaskList from "./TaskList";
 const Tasks = () => {
   const handleLogout = async () => {
     try {
@@ -16,6 +17,8 @@ const Tasks = () => {
     <div>
       <h1>Task Manager</h1>
       <button onClick={handleLogout}>Logout</button>
+      <CreateTask></CreateTask>
+      <TaskList></TaskList>
     </div>
   );
 };

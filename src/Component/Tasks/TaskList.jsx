@@ -4,20 +4,36 @@ import { db } from "../../firebaseConfig";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const q = query(collection(db, "tasks"));
-      const querySnapshot = await getDocs(q);
-      const tasksArray = [];
-      querySnapshot.forEach((doc) => {
-        tasksArray.push({ id: doc.id, ...doc.data() });
-      });
-      setTasks(tasksArray);
+      try {
+        const q = query(collection(db, "tasks"));
+        const querySnapshot = await getDocs(q);
+        const tasksArray = [];
+        querySnapshot.forEach((doc) => {
+          tasksArray.push({ id: doc.id, ...doc.data() });
+        });
+        setTasks(tasksArray);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchTasks();
   }, []);
+
+  if (loading) {
+    return <p>Loading tasks...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>

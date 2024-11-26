@@ -16,34 +16,33 @@ const CreateTask = () => {
         createdAt: new Date(),
       });
       alert("Task Added Successfully");
+      setTaskTitle(""); // Clear the input fields after successful submission
+      setTaskDescription("");
     } catch (err) {
       setError("Error creating task: " + err.message);
     }
   };
+
   return (
     <div>
-      <h2>
-        <div>
-          <h2>Create New Task</h2>
-          <form onSubmit={handleCreateTask}>
-            <input
-              type="text"
-              placeholder="Task Name"
-              value={taskTitle}
-              onChange={(e) => setTaskTitle(e.target.value)}
-              required
-            />
-            <textarea
-              placeholder="Task Description"
-              value={taskDescription}
-              onChange={(e) => setTaskDescription(e.target.value)}
-              required
-            ></textarea>
-            <button type="submit">Create Task</button>
-          </form>
-          {error && <p>{error}</p>}
-        </div>
-      </h2>
+      <h2>Create New Task</h2>
+      <form onSubmit={handleCreateTask}>
+        <input
+          type="text"
+          placeholder="Task Name"
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Task Description"
+          value={taskDescription}
+          onChange={(e) => setTaskDescription(e.target.value)}
+          required
+        ></textarea>
+        <button type="submit">Create Task</button>
+      </form>
+      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -1,0 +1,12 @@
+.search-bar {
+    margin-bottom: 1rem;
+    align-items: center;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .search-bar {
+        width: 50%;
+    }
+}

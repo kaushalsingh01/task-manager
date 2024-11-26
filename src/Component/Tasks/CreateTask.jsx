@@ -1,23 +1,25 @@
-import { useState } from "react"
+import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db }  from "../../firebaseConfig"
+import { db } from "../../firebaseConfig";
+
 const CreateTask = () => {
-    const [taskTitle, setTaskTitle] = useState("");
-    const [taskDescription, setTaskDescription] = useState("");
-    const [error, setError] = useState("");
-    const handleCreateTask = async (e) => {
-        e.preventDefault();
-        try {
-            await addDoc(collection(db ,"tasks"),{
-                title: taskTitle,
-            description: taskDescription,
-            createdAt: new Date(),
-            });
-            alert("Task Added Successfully")
-        } catch (err) {
-            setError("Error creating task: " + err.message);
-        }
-    };
+  const [taskTitle, setTaskTitle] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [error, setError] = useState("");
+
+  const handleCreateTask = async (e) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(db, "tasks"), {
+        title: taskTitle,
+        description: taskDescription,
+        createdAt: new Date(),
+      });
+      alert("Task Added Successfully");
+    } catch (err) {
+      setError("Error creating task: " + err.message);
+    }
+  };
   return (
     <div>
       <h2>
@@ -44,6 +46,6 @@ const CreateTask = () => {
       </h2>
     </div>
   );
-}
+};
 
-export default CreateTask
+export default CreateTask;

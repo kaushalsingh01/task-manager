@@ -12,6 +12,6 @@ const DeleteTask = ({ taskId }) => {
 };
 
 DeleteTask.propTypes = {
-    taskId: PropTypes.node.isRequired,
-}
+  taskId: PropTypes.node.isRequired,
+};
 export default DeleteTask;

@@ -4,6 +4,8 @@ import Login from "./Component/Auth/Login";
 import ProtectedRoute from "./Component/Auth/ProtectedRoute";
 import Tasks from "./Component/Tasks/Tasks";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
   return (
